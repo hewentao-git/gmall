@@ -15,9 +15,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserInfoMapper userInfoMapper;
+    private UserInfoMapper userInfoMapper;
     @Autowired
-    UserAddressMapper userAddressMapper;
+    private UserAddressMapper userAddressMapper;
 
     @Override
     public List<UserInfo> findAll() {

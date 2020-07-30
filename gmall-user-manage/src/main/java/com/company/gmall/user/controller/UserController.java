@@ -12,7 +12,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping("findAll")
     public List<UserInfo> findAll(){
