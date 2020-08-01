@@ -42,5 +42,12 @@ public interface ManageService {
 
     List<SpuInfo> getSpuInfoList(SpuInfo spuInfo);
 
-    List<SpuInfo> getSpuImageList(String spuId);
+    List<SpuImage> getSpuImageList(SpuImage spuImage);
+
+    // 查询基本销售属性表
+    List<BaseSaleAttr> getBaseSaleAttrList();
+
+    void saveSpuInfo(SpuInfo spuInfo);
+
+    List<SpuSaleAttr> getSpuSaleAttrList(String spuId);
 }

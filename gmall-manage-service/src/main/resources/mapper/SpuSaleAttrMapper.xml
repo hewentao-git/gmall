@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.gmall.manage.mapper.SpuSaleAttrMapper">
+    <!--    autoMapping="true"自动映射-->
+    <resultMap id="SpuSaleAttrMap" type="com.company.gmall.bean.SpuSaleAttr" autoMapping="true">
+        <!--        主键-->
+        <id property="id" column="id"/>
+        <!--        普通字段-->
+        <!--        <result property="spuId" column=""/>-->
+
+        <!--        配置一对多-->
+        <collection property="spuSaleAttrValueList" ofType="com.company.gmall.bean.SpuSaleAttrValue" autoMapping="true">
+            <id property="id" column="sale_attr_value_id"/>
+        </collection>
+
+        <!--        配置多对一-->
+        <!--        <association property=""/>-->
+    </resultMap>
+
+    <select id="selectSpuSaleAttrList" resultMap="SpuSaleAttrMap">
+
+        SELECT sa.id,sa.spu_id,sa.sale_attr_name,sa.sale_attr_id,
+               sv.id sale_attr_value_id,sv.sale_attr_value_name
+        FROM spu_sale_attr sa INNER JOIN spu_sale_attr_value sv
+        ON sa.spu_id = sv.spu_id AND sa.sale_attr_id = sv.sale_attr_id
+        WHERE sa.spu_id = #{spuId,jdbcType=VARCHAR}
+
+    </select>
+</mapper>

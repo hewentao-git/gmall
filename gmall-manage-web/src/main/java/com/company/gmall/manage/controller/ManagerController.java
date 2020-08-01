@@ -47,6 +47,13 @@ public class ManagerController {
         return baseAttrInfo.getAttrValueList();
     }
 
+    @RequestMapping("baseSaleAttrList")
+    public List<BaseSaleAttr> getBaseSaleAttrList(){
+
+        return manageService.getBaseSaleAttrList();
+    }
+
+
 
 
 }

@@ -8,17 +8,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gmall-common-util" />
+        <module name="fastdfs-client-java" />
         <module name="gmall-manage-web" />
         <module name="gmall-bean" />
-        <module name="gmall-manage-service" />
-        <module name="gmall-user-manage" />
-        <module name="gmall-interface" />
         <module name="gmall-web-util" />
+        <module name="gmall-manage-service" />
+        <module name="gmall-interface" />
+        <module name="gmall-user-manage" />
         <module name="gmall-service-util" />
         <module name="gmall-order-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="fastdfs-client-java" target="1.8" />
       <module name="gmall-bean" target="1.8" />
       <module name="gmall-common-util" target="1.8" />
       <module name="gmall-interface" target="1.8" />
