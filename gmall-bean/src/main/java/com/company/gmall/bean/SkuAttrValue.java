@@ -7,12 +7,19 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Data
-public class BaseSaleAttr implements Serializable {
+public class SkuAttrValue implements Serializable {
+
     @Id
     @Column
-    private String id ;
+    private String id;
 
     @Column
-    private String name;
+    private String attrId;
+
+    @Column
+    private String valueId;
+
+    @Column
+    private String skuId;
 
 }

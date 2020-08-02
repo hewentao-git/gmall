@@ -50,4 +50,6 @@ public interface ManageService {
     void saveSpuInfo(SpuInfo spuInfo);
 
     List<SpuSaleAttr> getSpuSaleAttrList(String spuId);
+
+    void saveSkuInfo(SkuInfo skuInfo);
 }

@@ -4,28 +4,26 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 import java.io.Serializable;
-import java.util.List;
 
 @Data
-public class SpuSaleAttr implements Serializable {
+public class SkuSaleAttrValue implements Serializable {
 
     @Id
     @Column
-    private String id ;
+    private String id;
 
     @Column
-    private String spuId;
+    private String skuId;
 
     @Column
     private String saleAttrId;
-
+    @Column
+    private String saleAttrValueId;
     @Column
     private String saleAttrName;
+    @Column
+    private String saleAttrValueName;
 
-
-    @Transient
-    private List<SpuSaleAttrValue> spuSaleAttrValueList;
 
 }

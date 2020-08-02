@@ -12,18 +12,18 @@ public class SpuSaleAttrValue implements Serializable {
 
     @Id
     @Column
-    String id ;
+    private String id ;
 
     @Column
-    String spuId;
+    private String spuId;
 
     @Column
-    String saleAttrId;
+    private String saleAttrId;
 
     @Column
-    String saleAttrValueName;
+    private String saleAttrValueName;
 
     @Transient
-    String isChecked;
+    private String isChecked;
 }
 
