@@ -52,4 +52,15 @@ public interface ManageService {
     List<SpuSaleAttr> getSpuSaleAttrList(String spuId);
 
     void saveSkuInfo(SkuInfo skuInfo);
+
+    SkuInfo getSkuInfo(String skuId);
+
+    /**
+     * 根据skuid spuid 查询销售属性值集合
+     * @param skuInfo
+     * @return
+     */
+    List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(SkuInfo skuInfo);
+
+    List<SkuSaleAttrValue> getSkuSaleAttrValueListBySpuId(String spuId);
 }
