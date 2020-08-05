@@ -7,6 +7,7 @@ import com.company.gmall.config.RedisUtil;
 import com.company.gmall.manage.constant.ManageConst;
 import com.company.gmall.manage.mapper.*;
 import com.company.gmall.service.ManageService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.Jedis;
@@ -328,5 +329,14 @@ public class ManagerServiceImpl implements ManageService {
     public List<SkuSaleAttrValue> getSkuSaleAttrValueListBySpuId(String spuId) {
         return skuSaleAttrValueMapper.selectSkuSaleAttrValueListBySpu(spuId);
     }
-
+    @Override
+    public List<BaseAttrInfo> getAttrList(List<String> attrValueIdList) {
+        List<BaseAttrInfo> baseAttrInfoList = null;
+        if (attrValueIdList != null && attrValueIdList.size() > 0) {
+            String attrValueIds = StringUtils.join(attrValueIdList.toArray(), ",");
+            System.err.println(attrValueIds);
+            baseAttrInfoList = baseAttrInfoMapper.selectAttrInfoListByIds(attrValueIds);
+        }
+        return baseAttrInfoList;
+    }
 }

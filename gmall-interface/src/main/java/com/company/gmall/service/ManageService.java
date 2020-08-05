@@ -63,4 +63,6 @@ public interface ManageService {
     List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(SkuInfo skuInfo);
 
     List<SkuSaleAttrValue> getSkuSaleAttrValueListBySpuId(String spuId);
+
+    List<BaseAttrInfo> getAttrList(List<String> attrValueIdList);
 }

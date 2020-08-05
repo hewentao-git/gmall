@@ -21,14 +21,24 @@
 
     <select id="selectBaseAttrInfoByCatalog3Id" resultMap="BaseAttrInforMap">
 
-        SELECT bai.id,bai.attr_name ,bai.catalog3_id,
-        bav.id base_attr_value_id,
-        bav.value_name,
-        bav.attr_id
-        FROM base_attr_info bai
-        INNER JOIN base_attr_value bav
-        ON bai.id = bav.attr_id
-        where bai.catalog3_id = #{catalog3Id,jdbcType=VARCHAR}
+                        SELECT bai.id,bai.attr_name ,bai.catalog3_id,
+                        bav.id base_attr_value_id,
+                        bav.value_name,
+                        bav.attr_id
+                        FROM base_attr_info bai
+                        INNER JOIN base_attr_value bav
+                        ON bai.id = bav.attr_id
+                        where bai.catalog3_id = #{catalog3Id,jdbcType=VARCHAR}
+
+
+
+    </select>
+
+    <select id="selectAttrInfoListByIds" resultMap="BaseAttrInforMap">
+
+                    SELECT ai.id,ai.attr_name,ai.catalog3_id, av.id base_attr_value_id ,av.attr_id ,av.value_name
+                    FROM base_attr_info ai INNER JOIN base_attr_value av ON ai.id=av.attr_id
+                    WHERE av.id IN (${valueIds})
 
     </select>
 </mapper>

@@ -6,6 +6,7 @@ import com.company.gmall.bean.SkuImage;
 import com.company.gmall.bean.SkuInfo;
 import com.company.gmall.bean.SkuSaleAttrValue;
 import com.company.gmall.bean.SpuSaleAttr;
+import com.company.gmall.service.ListService;
 import com.company.gmall.service.ManageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class ItemController {
 
     @Reference
     private ManageService manageService;
+
+    @Reference
+    private ListService listService;
 
     @RequestMapping("{skuId}.html")
     public String item(@PathVariable("skuId") String skuId, Model model) {
@@ -58,7 +62,7 @@ public class ItemController {
         model.addAttribute("spuSaleAttrList", spuSaleAttrList);
         model.addAttribute("skuSaleAttrValueList", skuSaleAttrValueList);
         model.addAttribute("valuesSkuJson", valuesSkuJson);
-
+        listService.incrHotScore(skuId);  //最终应该由异步方式调用
         return "item";
     }
 

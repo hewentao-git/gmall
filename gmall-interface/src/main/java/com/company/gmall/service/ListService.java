@@ -9,4 +9,6 @@ public interface ListService {
     void saveSkuLsInfo(SkuLsInfo skuLsInfo);
 
     SkuLsResult search(SkuLsParams skuLsParams);
+
+    void incrHotScore(String skuId);
 }
