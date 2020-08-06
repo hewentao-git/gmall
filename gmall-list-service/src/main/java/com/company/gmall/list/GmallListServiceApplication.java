@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.company.gmall")
+@ComponentScan("com.company.gmall")
 public class GmallListServiceApplication {
 
     public static void main(String[] args) {

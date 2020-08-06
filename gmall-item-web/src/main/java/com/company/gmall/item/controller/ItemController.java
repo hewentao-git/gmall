@@ -6,6 +6,7 @@ import com.company.gmall.bean.SkuImage;
 import com.company.gmall.bean.SkuInfo;
 import com.company.gmall.bean.SkuSaleAttrValue;
 import com.company.gmall.bean.SpuSaleAttr;
+import com.company.gmall.config.LoginRequire;
 import com.company.gmall.service.ListService;
 import com.company.gmall.service.ManageService;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class ItemController {
     private ListService listService;
 
     @RequestMapping("{skuId}.html")
+    @LoginRequire
     public String item(@PathVariable("skuId") String skuId, Model model) {
         //根据skuid获取数据
         SkuInfo skuInfo = manageService.getSkuInfo(skuId);
