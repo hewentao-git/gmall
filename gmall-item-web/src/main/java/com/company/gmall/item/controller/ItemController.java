@@ -29,7 +29,6 @@ public class ItemController {
     private ListService listService;
 
     @RequestMapping("{skuId}.html")
-    @LoginRequire
     public String item(@PathVariable("skuId") String skuId, Model model) {
         //根据skuid获取数据
         SkuInfo skuInfo = manageService.getSkuInfo(skuId);

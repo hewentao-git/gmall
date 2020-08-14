@@ -1,0 +1,5 @@
+com\company\gmall\config\AuthInterceptor.class
+com\company\gmall\config\LoginRequire.class
+com\company\gmall\config\CookieUtil.class
+com\company\gmall\config\WebConst.class
+com\company\gmall\config\WebMvcConfiguration.class

@@ -202,7 +202,7 @@ public class ListServiceImpl implements ListService {
         searchSourceBuilder.aggregation(groupby_attr);
 
         String query = searchSourceBuilder.toString();
-//        System.out.println("query:=" + query);
+        System.out.println("query:=" + query);
         return query;
 
 
