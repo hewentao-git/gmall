@@ -10,6 +10,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.URLEncoder;
 import java.util.Map;
 
@@ -38,32 +40,38 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         }
 
         //在拦截器中获取方法上的注解
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
-        LoginRequire methodAnnotation = handlerMethod.getMethodAnnotation(LoginRequire.class);
-        if (methodAnnotation != null){
-            //有注解
-            //判断用户是否登录
-            //获取服务器的ip
-            String salt = request.getHeader("X-forwarded-for");
-            //调用verify（）认证
-            String result = HttpClientUtil.doGet(WebConst.VERIFY_ADDRESS + "?token=" + token + "&salt=" + salt);
-            if ("success".equals(result)){
-                //登录，认证成功
-                //保存userId
-                Map map = getUserMapByToken(token);
-                String userId = (String) map.get("userId");
-                request.setAttribute("userId", userId);
-                return true;
-            }else {
-                //认证失败 methodAnnotation.autoRedirect()=true  必须登录
-                if(methodAnnotation.autoRedirect()){
-                    String  requestURL = request.getRequestURL().toString();
-                    String encodeURL = URLEncoder.encode(requestURL, "UTF-8");
-                    response.sendRedirect(WebConst.LOGIN_ADDRESS+"?originUrl="+encodeURL);
-                    return false;
+//        HandlerMethod handlerMethod = (HandlerMethod) handler;
+//        LoginRequire methodAnnotation = handlerMethod.getMethodAnnotation(LoginRequire.class);
+        Method[] methods = handler.getClass().getMethods();
+
+        for (Method method : methods) {
+            LoginRequire annotation = method.getAnnotation(LoginRequire.class);
+            if (annotation != null){
+                //有注解
+                //判断用户是否登录
+                //获取服务器的ip
+                String salt = request.getHeader("X-forwarded-for");
+                //调用verify（）认证
+                String result = HttpClientUtil.doGet(WebConst.VERIFY_ADDRESS + "?token=" + token + "&salt=" + salt);
+                if ("success".equals(result)){
+                    //登录，认证成功
+                    //保存userId
+                    Map map = getUserMapByToken(token);
+                    String userId = (String) map.get("userId");
+                    request.setAttribute("userId", userId);
+                    return true;
+                }else {
+                    //认证失败 methodAnnotation.autoRedirect()=true  必须登录
+                    if(annotation.autoRedirect()){
+                        String  requestURL = request.getRequestURL().toString();
+                        String encodeURL = URLEncoder.encode(requestURL, "UTF-8");
+                        response.sendRedirect(WebConst.LOGIN_ADDRESS+"?originUrl="+encodeURL);
+                        return false;
+                    }
                 }
             }
         }
+
         return true;
     }
 

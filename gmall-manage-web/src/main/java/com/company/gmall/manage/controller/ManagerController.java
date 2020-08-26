@@ -53,7 +53,4 @@ public class ManagerController {
         return manageService.getBaseSaleAttrList();
     }
 
-
-
-
 }
