@@ -43,7 +43,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 //        HandlerMethod handlerMethod = (HandlerMethod) handler;
 //        LoginRequire methodAnnotation = handlerMethod.getMethodAnnotation(LoginRequire.class);
         Method[] methods = handler.getClass().getMethods();
-
         for (Method method : methods) {
             LoginRequire annotation = method.getAnnotation(LoginRequire.class);
             if (annotation != null){
